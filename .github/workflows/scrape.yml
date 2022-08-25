@@ -35,5 +35,7 @@ jobs:
         name: "service_account.json"
         json : ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
     - name: Get player counts
+      env:
+        GOOGLE_SHEETS_ID: ${{ secrets.GOOGLE_SHEETS_ID }}
       run: |
         python main.py
