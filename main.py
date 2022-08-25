@@ -25,7 +25,7 @@ def scrape_website(version, link):
 
 def main():
     # Open the spreadsheet
-    gc = gspread.service_account()
+    gc = gspread.service_account(filename="service_account.json")
     ss = gc.open_by_key(os.environ.get("GOOGLE_SHEETS_ID"))
 
     # Iterate through each version of RuneScape
