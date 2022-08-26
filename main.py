@@ -39,7 +39,7 @@ def scrape_website(version, link):
         # We're not scraping a server list
         if version == "Old School":
             # There are currently 81,702 people playing!
-            player_count = soup.find_all("p", class_="player-count")[0].split("There are currently ")[-1].split(" people playing!")[0]
+            player_count = soup.find_all("p", class_="player-count")[0].text.split("There are currently ")[-1].split(" people playing!")[0]
         elif version == "EoC":
             # <span id="playerCount" class="c-responsive-header__player-count" data-test="header-sub-online-count">111,314</span>
             player_count = soup.find_all("span", id="playerCount")[0].text
