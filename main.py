@@ -8,10 +8,10 @@ import requests
 
 LINKS = {
     # "EoC": "https://www.runescape.com/community",
+    "EoC": f"https://www.runescape.com/player_count.js?varname=iPlayerCount&callback=jQuery36006573490415341001_1661542575691&_={int(datetime.utcnow().timestamp() * 1000)}",
     "Old School": "https://oldschool.runescape.com/",
     "Old School - Servers": "https://oldschool.runescape.com/slu",
 }
-
 
 def scrape_website(version, link):
     r = requests.get(link)
@@ -49,7 +49,10 @@ def scrape_website(version, link):
             player_count = soup.find_all("p", class_="player-count")[0].text.split("There are currently ")[-1].split(" people playing!")[0]
         elif version == "EoC":
             # <span id="playerCount" class="c-responsive-header__player-count" data-test="header-sub-online-count">111,314</span>
-            player_count = soup.find_all("span", id="playerCount")[0].text
+            # player_count = soup.find_all("span", id="playerCount")[0].text
+
+            # jQuery36006573490415341001_1661542575691(122045);
+            player_count = r.text.split("(")[-1].split(")")[0]
         result = [[timestamp, int(player_count.replace(",", ""))]]
 
     return result
