@@ -19,7 +19,7 @@ def scrape_website(version, link):
 
     soup = BeautifulSoup(r.content, "html.parser")
     timestamp = datetime.utcnow().timestamp()
-    if "Servers" in "version":
+    if "Servers" in version:
         # We're scraping server list
         if version == "Old School - Servers":
             l = []
