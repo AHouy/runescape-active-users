@@ -35,9 +35,9 @@ def scrape_website(version, link):
                             break
                         d["type"] = text
                     elif "players" in entry.text:
-                        d["players"] = text.replace(" players", "")
+                        d["players"] = int(text.replace(" players", ""))
                     elif entry.find_all("a"):
-                        d["server"] = entry.find_all("a")[0].text.split()[-1]
+                        d["server"] = int(entry.find_all("a")[0].text.split()[-1])
 
                 if d:
                     l.append(d)
