@@ -10,7 +10,7 @@ LINKS = {
     # "EoC": "https://www.runescape.com/community",
     "EoC": f"https://www.runescape.com/player_count.js?varname=iPlayerCount&callback=jQuery36006573490415341001_1661542575691&_={int(datetime.utcnow().timestamp() * 1000)}",
     "Old School": "https://oldschool.runescape.com/",
-    "Old School - Servers": "https://oldschool.runescape.com/slu",
+    # "Old School - Servers": "https://oldschool.runescape.com/slu",
 }
 
 def scrape_website(version, link):
