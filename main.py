@@ -6,7 +6,7 @@ import gspread
 import requests
 
 LINKS = {
-    "EoC": "https://www.runescape.com/community",
+    # "EoC": "https://www.runescape.com/community",
     "Old School": "https://oldschool.runescape.com/",
 }
 
@@ -22,7 +22,7 @@ def scrape_website(version, link):
         player_count = html_content.split("There are currently ")[-1].split(" people playing!")[0]
     elif version == "EoC":
         # <span id="playerCount" class="c-responsive-header__player-count" data-test="header-sub-online-count">111,314</span>
-        player_count = html_content.split("span id='playerCount'")[-1].split(">")[-1].replace("</span>", "")
+        player_count = html_content.split("span id='playerCount'")[-1].split(">")[1].replace("</span", "")
     return int(player_count.replace(",", ""))
 
 
