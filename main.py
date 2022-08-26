@@ -28,12 +28,19 @@ def scrape_website(version, link):
                 for entry in row.find_all("td"):
                     text = entry.text
                     if "server-list__row-cell--type" in entry["class"]:
+                        if text == "Free":
+                            # If the world type is a Free world, then break the for loop
+                            # Replace the dictionary so we don't append it
+                            d = None
+                            break
                         d["type"] = text
                     elif "players" in entry.text:
                         d["players"] = text.replace(" players", "")
                     elif entry.find_all("a"):
                         d["server"] = entry.find_all("a")[0].text.split()[-1]
-                l.append(d)
+
+                if d:
+                    l.append(d)
             result = [[timestamp, d["players"], d["server"], d["type"]] for d in l]
     else:
         # We're not scraping a server list
